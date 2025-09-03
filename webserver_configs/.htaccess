@@ -1,0 +1,10 @@
+<FilesMatch "^(\.env|composer\.json|composer\.lock|\.git)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+<Directory "/database">
+    Order Allow,Deny
+    Deny from all
+</Directory>
+

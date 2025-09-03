@@ -1,0 +1,57 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    margin:auto
+}
+
+.page {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;  
+  margin: 0;
+  text-align: center;
+}
+
+.links {
+    float: right;
+    margin-right: 2em;
+}
+
+.title {
+    margin-top: 2em;
+}
+
+.message {
+    margin-top: 1rem;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+}
+
+.mention {
+    font-size: 0.9em;
+}
+
+fieldset {  
+    border: none;
+    text-align: center;
+}
+
+input {
+    margin-top: 0.4rem;
+}
+
+@media only screen and (max-width: 768px){
+
+.message, label, .nav {
+    font-size: 0.9em;
+}
+
+.links {
+    margin-right: 1em;
+}   
+
+.mention {
+    font-size: 0.7em;
+}
+}
