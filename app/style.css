@@ -5,12 +5,14 @@
 }
 
 .page {
-  display: block;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;  
-  margin: 0;
   text-align: center;
+}
+
+.about {
+  text-align: center;
+  font-size: 0.8em;
+  margin-left: 6em;
+  margin-right: 6em;
 }
 
 .links {
@@ -23,8 +25,6 @@
 }
 
 .message {
-    margin-top: 1rem;
-    margin-bottom: 1em;
     font-size: 1.5em;
 }
 
@@ -35,10 +35,17 @@
 fieldset {  
     border: none;
     text-align: center;
+    font-size: 1.2em;
+}
+
+textarea {
+    width: 93%;
 }
 
 input {
     margin-top: 0.4rem;
+    font-size: 1.1em;
+    font-family:'Brush Script MT', cursive;
 }
 
 @media only screen and (max-width: 768px){
@@ -47,11 +54,26 @@ input {
     font-size: 0.9em;
 }
 
+.about {
+  margin-left: 3em;
+  margin-right: 3em;
+  font-size: 1em;
+}
+
 .links {
     margin-right: 1em;
 }   
 
 .mention {
     font-size: 0.7em;
+}
+
+fieldset {  
+    font-size: 0.9em;
+}
+
+input {
+    margin-top: 0.2rem;
+    font-size: 0.9em;
 }
 }

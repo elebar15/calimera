@@ -2,3 +2,7 @@ location /database/ {
     deny all;
     return 404;
 }
+
+location ~ /\.env {
+    deny all;
+}

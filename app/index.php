@@ -12,13 +12,13 @@ unset($_SESSION['message']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calimera</title>
- <link rel="stylesheet" href="style.css" />
+ <link rel="stylesheet" href="app/style.css" />
 </head>
 <body style="background-color: rgb(250, 243, 235);">
     <div class="nav">
         <div>Logo</div>
         <div class="links">
-            RSS - A propos
+            RSS - <a href="app/about.php">A propos</a>
         </div>
     </div>
     <div class="page">
@@ -26,7 +26,7 @@ unset($_SESSION['message']);
     <div class="message">Recevez chaque jour <br/> un petit message rafraichissant <br />
         pour démarrer la journée <br/> avec un grand sourire !</div>
     <div class="form-container">
-        <form class="form" action="add_email.php" method="post">
+        <form class="form" action="app/add_email.php" method="post">
             <fieldset>
                 <label>
                     <span>Pour un message quotidien, <br />indiquez simplement votre courriel</span><br />    

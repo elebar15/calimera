@@ -4,10 +4,11 @@
 
 This webapp is just to receive a daily mail with a nice sentence to start a good day.
 
-You can register your email to receive the sentence but is planned to be able to have thanks to a rss feed or just by poping on the main page.
-Daily or weekly frequency choice will be added later.
+You can register your email to receive the sentence but it is also planned to be able to read the sentence thanks to a rss feed or just by poping on the main page.
+It offers the possibilty for anyone to propose a sentence.
+
 Also planned:
-- offer the possibilty for anyone to propose a sentence
+- daily or weekly delivery choice
 - categories of sentences (and the possibility to choose to receive the wanted categories)
 - unsubscribe option
 - administration managment
@@ -18,11 +19,9 @@ Also planned:
 The app is in php and uses a sqlite database. The sql schema is available in the sql folder.
 
 you need to 
-- install the phpdotenv package using [Composer](https://getcomposer.org/download/)
-  `composer require vlucas/phpdotenv`
-- create a sqlite database
-  `sqlite3 my_database.db`  
-- populate the db with the file found in the sql folder
-  `sqlite3 my_database.db < db_schema.sql` 
+- git clone the repository in your webserver folder
+- install some necessary packages with [Composer](https://getcomposer.org/download/)
+  `composer install`
 - copy the .env.example
-  `$ cp .env.example .env` and fill it (`$ nano .env`)       
+  `$ cp .env.example .env` and fill it (`$ nano .env`)    
+- use the config files helpers depending on the webserver you are using, [.htaccess for Apache](https://github.com/elebar15/calimera/blob/master/webserver_configs/.htaccess) or the [block code for nginx](https://github.com/elebar15/calimera/blob/master/webserver_configs/nginx)    
