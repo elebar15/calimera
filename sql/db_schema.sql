@@ -10,16 +10,9 @@ CREATE TABLE IF NOT EXISTS "alr_used" (
 	"id_user"	INTEGER NOT NULL,
 	"id_phrase"	INTEGER NOT NULL,
 	"date"	DATETIME NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT),
 	FOREIGN KEY("id_phrase") REFERENCES "phrase"("id"),
-	FOREIGN KEY("id_user") REFERENCES "users"("id"),
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "users" (
-	"id"	INTEGER NOT NULL UNIQUE,
-	"email"	TEXT NOT NULL UNIQUE,
-	"themes"	TEXT DEFAULT 1,
-	"frequency"	INTEGER DEFAULT 1,
-	PRIMARY KEY("id" AUTOINCREMENT)
+	FOREIGN KEY("id_user") REFERENCES "users"("id")
 );
 CREATE TABLE IF NOT EXISTS "themes" (
 	"id"	INTEGER NOT NULL UNIQUE,
@@ -29,8 +22,26 @@ CREATE TABLE IF NOT EXISTS "themes" (
 CREATE TABLE IF NOT EXISTS "phrase" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"phrase_text"	TEXT NOT NULL UNIQUE,
-	"id_theme"	INTEGER NOT NULL,
-	FOREIGN KEY("id_theme") REFERENCES "themes"("id"),
 	PRIMARY KEY("id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "users" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"email"	TEXT NOT NULL UNIQUE,
+	"frequency"	INTEGER DEFAULT 1,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "phrase_themes" (
+	"phrase_id"	INTEGER NOT NULL,
+	"theme_id"	INTEGER NOT NULL,
+	PRIMARY KEY("phrase_id","theme_id"),
+	FOREIGN KEY("theme_id") REFERENCES "themes"("id"),
+	FOREIGN KEY("phrase_id") REFERENCES "phrase"("id")
+);
+CREATE TABLE IF NOT EXISTS "user_themes" (
+	"user_id"	INTEGER NOT NULL,
+	"theme_id"	INTEGER NOT NULL,
+	PRIMARY KEY("user_id","theme_id"),
+	FOREIGN KEY("user_id") REFERENCES "users"("id"),
+	FOREIGN KEY("theme_id") REFERENCES "themes"("id")
 );
 COMMIT;

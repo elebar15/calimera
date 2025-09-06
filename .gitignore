@@ -13,8 +13,9 @@
 
 # ignore log files and databases
 *.log
-*.sqlite
+!*.sqlite
 *.db
+!*.sql
 
 # ignore compiled files
 *.com
