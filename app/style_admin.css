@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(250, 243, 235);
+    margin-left: 3em;
+}
+
+form {
+    width: 90%;
+}
+.themes {
+   margin-left: 3em; 
+}
+
+input[type=text]{
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 768px){
+input[type=text], select, textarea{
+  width: 90%;
+}
+}

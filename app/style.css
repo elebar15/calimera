@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(250, 243, 235);
+}
+
 .nav {
     display: flex;
     justify-content: space-between;

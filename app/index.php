@@ -14,7 +14,7 @@ unset($_SESSION['message']);
     <title>Calimera</title>
  <link rel="stylesheet" href="app/style.css" />
 </head>
-<body style="background-color: rgb(250, 243, 235);">
+<body>
     <div class="nav">
         <div>Logo</div>
         <div class="links">
@@ -29,7 +29,7 @@ unset($_SESSION['message']);
         <form class="form" action="app/add_email.php" method="post">
             <fieldset>
                 <label>
-                    <span>Pour un message quotidien, <br />indiquez simplement votre courriel</span><br />    
+                    <span>Pour un message quotidien, <br />indiquez simplement votre courriel</span><br /><br />    
                     <input type="email" name="email" />
                 </label>
                 <input type="submit" value="123... soleil !" />
