@@ -10,6 +10,7 @@ $dsn = "sqlite:" . $dbPath;
 
 try {
     $pdo = new PDO($dsn);
+    $pdo->exec("PRAGMA foreign_keys = ON;");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());

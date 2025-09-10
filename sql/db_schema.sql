@@ -10,18 +10,13 @@ CREATE TABLE IF NOT EXISTS "alr_used" (
 	"id_user"	INTEGER NOT NULL,
 	"id_phrase"	INTEGER NOT NULL,
 	"date"	DATETIME NOT NULL,
-	PRIMARY KEY("id" AUTOINCREMENT),
-	FOREIGN KEY("id_phrase") REFERENCES "phrase"("id"),
-	FOREIGN KEY("id_user") REFERENCES "users"("id")
+	FOREIGN KEY("id_phrase") REFERENCES "phrases"("id") ON DELETE CASCADE,
+	FOREIGN KEY("id_user") REFERENCES "users"("id") ON DELETE CASCADE,
+	PRIMARY KEY("id" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "themes" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"theme_name"	TEXT NOT NULL UNIQUE,
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "phrase" (
-	"id"	INTEGER NOT NULL UNIQUE,
-	"phrase_text"	TEXT NOT NULL UNIQUE,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "users" (
@@ -30,18 +25,23 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"frequency"	INTEGER DEFAULT 1,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
-CREATE TABLE IF NOT EXISTS "phrase_themes" (
-	"phrase_id"	INTEGER NOT NULL,
-	"theme_id"	INTEGER NOT NULL,
-	PRIMARY KEY("phrase_id","theme_id"),
-	FOREIGN KEY("theme_id") REFERENCES "themes"("id"),
-	FOREIGN KEY("phrase_id") REFERENCES "phrase"("id")
-);
 CREATE TABLE IF NOT EXISTS "user_themes" (
 	"user_id"	INTEGER NOT NULL,
 	"theme_id"	INTEGER NOT NULL,
-	PRIMARY KEY("user_id","theme_id"),
-	FOREIGN KEY("user_id") REFERENCES "users"("id"),
-	FOREIGN KEY("theme_id") REFERENCES "themes"("id")
+	FOREIGN KEY("theme_id") REFERENCES "themes"("id") ON DELETE CASCADE,
+	FOREIGN KEY("user_id") REFERENCES "users"("id") ON DELETE CASCADE,
+	PRIMARY KEY("user_id","theme_id")
+);
+CREATE TABLE IF NOT EXISTS "phrases" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"phrase_text"	TEXT NOT NULL UNIQUE,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "phrase_theme" (
+	"phrase_id"	INTEGER NOT NULL,
+	"theme_id"	INTEGER NOT NULL,
+	FOREIGN KEY("theme_id") REFERENCES "themes"("id") ON DELETE CASCADE,
+	FOREIGN KEY("phrase_id") REFERENCES "phrases"("id") ON DELETE CASCADE,
+	PRIMARY KEY("phrase_id","theme_id")
 );
 COMMIT;
