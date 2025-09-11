@@ -44,4 +44,5 @@ CREATE TABLE IF NOT EXISTS "phrase_theme" (
 	FOREIGN KEY("phrase_id") REFERENCES "phrases"("id") ON DELETE CASCADE,
 	PRIMARY KEY("phrase_id","theme_id")
 );
+INSERT INTO "users" ("id","email","frequency") VALUES (1,'cron',1);
 COMMIT;

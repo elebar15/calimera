@@ -1,5 +1,6 @@
 body {
     background-color: rgb(250, 243, 235);
+    color: #82898e;
 }
 
 .nav {
@@ -26,10 +27,19 @@ body {
 
 .title {
     margin-top: 2em;
+    color: #ec7a16;
 }
 
+.phrase {
+    font-size: 2.2em;
+    font-family:'Brush Script MT', cursive;
+}
+
+.quotem {
+    width: 1.8em;
+}
 .message {
-    font-size: 1.5em;
+    font-size: 1.1em;
 }
 
 .mention {
@@ -39,7 +49,7 @@ body {
 fieldset {  
     border: none;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 textarea {

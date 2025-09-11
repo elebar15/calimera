@@ -26,12 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['success'] = "Phrase ajoutée avec succès.";
             header("Location: admin.php");
             exit;
+
         } catch (Exception $e) {
             $pdo->rollBack();
             $_SESSION['error'] = "Erreur lors de l'ajout de la phrase: " . $e->getMessage();
+            header("Location: admin.php");
+            exit;
         }
     } else {
         $_SESSION['error'] = "Veuillez remplir tous les champs.";
+        header("Location: admin.php");
+        exit;
     }
+
+            
 }
 ?>

@@ -12,13 +12,13 @@ unset($_SESSION['merci']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calimera</title>
- <link rel="stylesheet" href="style.css" />
+ <link rel="stylesheet" href="css/style.css" />
 </head>
 <body style="background-color: rgb(250, 243, 235);">
     <div class="nav">
         <div>Logo</div>
         <div class="links">
-            RSS - A propos
+            <a href="rss.php">RSS</a> - A propos
         </div>
     </div>
     <div class="about">

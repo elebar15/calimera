@@ -10,7 +10,7 @@ $search = isset($_SESSION['search_term']) ? $_SESSION['search_term'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord</title>
-    <link rel="stylesheet" href="style_admin.css" />
+    <link rel="stylesheet" href="css/style_admin.css" />
 </head>
 <body>
     <br>
@@ -64,6 +64,10 @@ $search = isset($_SESSION['search_term']) ? $_SESSION['search_term'] : '';
         <p style="color: green;"><?php echo $_SESSION['success']; ?></p>
         <?php unset($_SESSION['success']); ?>
     <?php endif; ?>
+    <?php if (isset($_SESSION['error'])): ?>
+        <p style="color: red;"><?php echo $_SESSION['error']; ?></p>
+        <?php unset($_SESSION['error']); ?>
+    <?php endif; ?>
     <br>
 
     <?php
@@ -81,20 +85,15 @@ $search = isset($_SESSION['search_term']) ? $_SESSION['search_term'] : '';
             <label>
                 <span>Thèmes</span>
             </label><br>
-            <?php foreach ($themes as $theme): ?>
-            <label class="themes">
-                <input type="radio" name="theme" value="<?= htmlspecialchars($theme['id']) ?>" required>
-                <?= htmlspecialchars($theme['theme_name']) ?>
-            </label><br>
-            <?php endforeach; ?><br>
+                <?php foreach ($themes as $theme): ?>
+                    <label class="themes">
+                        <input type="checkbox" name="themes[]" value="<?= htmlspecialchars($theme['id']) ?>">
+                        <?= htmlspecialchars($theme['theme_name']) ?>
+                    </label><br>
+                <?php endforeach; ?><br>
             <input type="submit" value="Ajouter" />
         </fieldset>
     </form>
-
-    <?php if (isset($_SESSION['success'])): ?>
-        <p style="color: green;"><?php echo $_SESSION['success']; ?></p>
-        <?php unset($_SESSION['success']); ?>
-    <?php endif; ?>
 
     <br>
     <h2>Gestion des thèmes</h2>
