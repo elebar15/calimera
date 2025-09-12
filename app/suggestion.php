@@ -15,6 +15,10 @@ $mail_admin = $_ENV['SENDFROM'] ?? null;
 $pass = $_ENV['PASS_SENDFROM'] ?? null; 
 $to = $_ENV['SENDTO'] ?? null; 
 
+    if (!$host_smtp || !$sendfrom || !$pass) {
+        die("Il manque les informations du serveur SMTP dans le fichier .env.");
+    }
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -31,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $mail = new PHPMailer(true);
 
 try {
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                           
     $mail->Host       = $host_smtp;                     
     $mail->SMTPAuth   = true;                                   

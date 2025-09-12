@@ -12,6 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (strlen($sanitized_email) > 255) {
         echo "Email is too long!";
     } 
+
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?');
+    $stmt->execute([$sanitized_email]);
+    if ($stmt->fetch(PDO::FETCH_ASSOC)) {
+        $_SESSION['message'] = "Ce courriel recoit déjà les messages de Calimera.";
+        header("Location: index.php");
+        exit;
+        }
+
     elseif (filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)) {
         $sql = "INSERT INTO users (email) VALUES (:email)";
         $stmt = $pdo->prepare($sql);
