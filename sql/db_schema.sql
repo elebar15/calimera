@@ -34,9 +34,9 @@ DROP TABLE IF EXISTS "phrase_theme";
 CREATE TABLE IF NOT EXISTS "phrase_theme" (
 	"phrase_id"	INTEGER NOT NULL,
 	"theme_id"	INTEGER NOT NULL,
+	FOREIGN KEY("phrase_id") REFERENCES "phrases"("id") ON DELETE CASCADE,
 	FOREIGN KEY("theme_id") REFERENCES "themes"("id") ON DELETE CASCADE,
-	PRIMARY KEY("phrase_id","theme_id"),
-	FOREIGN KEY("phrase_id") REFERENCES "phrases"("id") ON DELETE CASCADE
+	PRIMARY KEY("phrase_id","theme_id")
 );
 DROP TABLE IF EXISTS "email_queue";
 CREATE TABLE IF NOT EXISTS "email_queue" (
@@ -49,15 +49,6 @@ CREATE TABLE IF NOT EXISTS "email_queue" (
 	"date_processed"	TIMESTAMP,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
-DROP TABLE IF EXISTS "users";
-CREATE TABLE IF NOT EXISTS "users" (
-	"id"	INTEGER NOT NULL UNIQUE,
-	"date_subscr"	DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	"email"	TEXT NOT NULL UNIQUE,
-	"frequency"	INTEGER DEFAULT 1,
-	"day_of_week"	INTEGER DEFAULT 1,
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
 DROP TABLE IF EXISTS "themes";
 CREATE TABLE IF NOT EXISTS "themes" (
 	"id"	INTEGER NOT NULL UNIQUE,
@@ -65,5 +56,16 @@ CREATE TABLE IF NOT EXISTS "themes" (
 	"mail_subject"	TEXT,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
-INSERT INTO "users" ("id","date_subscr","email","frequency","day_of_week") VALUES (1,'2025-09-12 16:06:25','cron',0,' ');
+DROP TABLE IF EXISTS "users";
+CREATE TABLE IF NOT EXISTS "users" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"date_subscr"	DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	"email"	TEXT NOT NULL UNIQUE,
+	"frequency"	INTEGER DEFAULT 1,
+	"day_of_week"	INTEGER DEFAULT 1,
+	"unsubscribed"	BOOLEAN DEFAULT 0,
+	"token"	TEXT UNIQUE,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+INSERT INTO "users" ("id","date_subscr","email","frequency","day_of_week","unsubscribed","token") VALUES (1,'2025-09-11 23:26:09','cron',0,NULL,0,NULL);
 COMMIT;

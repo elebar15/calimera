@@ -30,9 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
     elseif (filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)) {
-        $sql = "INSERT INTO users (email) VALUES (:email)";
+        $token = bin2hex(random_bytes(32));
+
+        $sql = "INSERT INTO users (email, token) VALUES (:email, :token)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([':email' => $sanitized_email]);
+        $stmt->bindValue(':email', $sanitized_email, PDO::PARAM_STR);
+        $stmt->bindValue(':token', $token, PDO::PARAM_STR);
+        $stmt->execute();
 
         $_SESSION['message'] = "Bienvenue, vous recevrez prochainement un petit rayon de soleil quotidien !";
     } else {

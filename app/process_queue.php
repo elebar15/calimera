@@ -31,6 +31,15 @@ foreach ($emailJobs as $emailJob) {
         continue;  
     }
 
+    $stmtCheck = $pdo->prepare("SELECT unsubscribed, token FROM users WHERE email = :email");
+    $stmtCheck->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmtCheck->execute();
+    $subscriptionStatus = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+
+    if ($subscriptionStatus && $subscriptionStatus['unsubscribed'] == 1) {
+        continue;
+    }
+    
     $stmtPhrase = $pdo->prepare("SELECT id, phrase_text FROM phrases WHERE id = :phrase_id");
     $stmtPhrase->bindValue(':phrase_id', $phraseId, PDO::PARAM_INT);
     $stmtPhrase->execute();
@@ -76,9 +85,13 @@ foreach ($emailJobs as $emailJob) {
         $mail->CharSet = 'UTF-8';
         $mail->Subject = $mailSubject['mail_subject'];
         $mail->Body = "Bonne journée, <br><br> {$phrase['phrase_text']}
-            <br><br>A bientôt !";
+            <br><br>A bientôt !
+            <br><br><a href='https://calimera.fr/'>Calimera</a>
+            <br><br><a href='https://calimera.fr/unsubscribe.php?token={$subscriptionStatus['token']}'>Se désinscrire</a>";
         $mail->AltBody = "Bonne journée,\n\n {$phrase['phrase_text']}
-            \n\nA bientôt !";
+            \n\nA bientôt !
+            \n\n Calimera            
+            \n\n https://calimera.fr - Se désinscrire : https://calimera.fr/unsubscribe.php?token={$subscriptionStatus['token']}";
 
         $mail->send();
 
