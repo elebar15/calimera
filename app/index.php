@@ -65,6 +65,8 @@ $phraseOfTheDay = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php endif; ?>
     <p class="mention">Votre courriel ne sera utilisé que pour cet envoi et vous pouvez vous désabonner simplement </p>
     </div>
-    
+    <script>
+    var formLoadTime = new Date().getTime();
+    </script>
 </body>
 </html>

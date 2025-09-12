@@ -5,6 +5,14 @@ session_start();
 require_once __DIR__ .  '/db_connect.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $formSubmitTime = time();
+    $timeElapsed = $formSubmitTime - $_POST['form_load_time'];
+
+    if ($timeElapsed < 5) {
+        die("Thank you");
+    } else {
+
     $email = $_POST['email'] ?? '';
 
     $sanitized_email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -33,5 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     header("Location: index.php");
     exit;
+    }
 }
 ?>
